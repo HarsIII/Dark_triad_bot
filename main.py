@@ -13,8 +13,10 @@ from dotenv import load_dotenv
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 ALERT_MINUTES = 2
-CONFIG_FILE = "config.json"
-DATA_FILE = "data.json"
+import os
+DATA_DIR = os.getenv("DATA_DIR", ".")
+CONFIG_FILE = os.path.join(DATA_DIR, "config.json")
+DATA_FILE = os.path.join(DATA_DIR, "data.json")
 # ──────────────────────────────────────────────────────────────────────────────
 
 intents = discord.Intents.default()
