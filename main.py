@@ -2286,8 +2286,8 @@ HELP_DATA = {
             )),
         ]
     },
-    "timers": {
-        "title": "🕐 Module 5 — Event Timers",
+    "aw3": {
+        "title": "🕐 Module 5 — AW3 (Timers + Drop Calculator)",
         "color": discord.Color.dark_purple(),
         "fields": [
             ("Setup (first time)", (
@@ -2313,6 +2313,16 @@ HELP_DATA = {
                 "`!shopstop` → Stop shop timer\n"
                 "`!pathstop` → Stop path timer\n"
                 "`!timerstop all` → Stop all timers"
+            )),
+            ("Drop Calculator", (
+                "`!dropcalc drop% luckX boost_min ttk_min`\n"
+                "Example: `!dropcalc 0.2% 3.161x 180min 4min`\n"
+                "Parameters:\n"
+                "• `drop%` → base drop rate of the item\n"
+                "• `luckX` → your current luck multiplier\n"
+                "• `boost_min` → total boost duration in minutes\n"
+                "• `ttk_min` → time per kill in minutes\n"
+                "Returns: confidence table (50/90/99%) + checkpoint table"
             )),
             ("Timer Cycles", (
                 "🏪 Shop Restock → every **1h 30min**\n"
@@ -2397,7 +2407,7 @@ async def help_cmd(ctx, category: str = None):
                 "`!help hackers` → Hacker List\n"
                 "`!help build` → Build Calculator\n"
                 "`!help trading` → Trading Market\n"
-                "`!help timers` → Event Timers"
+                "`!help aw3` → AW3 (Timers + Drop Calc)"
             ),
             color=discord.Color.blurple()
         )
