@@ -975,13 +975,13 @@ async def list_builds(ctx, category: str = None):
 #  GLOBAL — SETCANAL / REMOVECANAL
 # ══════════════════════════════════════════════════════════════════════════════
 
-VALID_MODULES = ["boss", "hackers", "build", "trading", "timers"]
+VALID_MODULES = ["boss", "hackers", "build", "trading", "aw3"]
 
 @bot.command(name="setcanal")
 async def set_canal(ctx, module: str = None, channel: str = None):
     """!setcanal boss #channel  OR  !setcanal boss 123456789"""
     if not module or module.lower() not in VALID_MODULES:
-        await ctx.send(f"❌ Invalid module. Options: `boss`, `hackers`, `build`, `trading`, `timers`", delete_after=10)
+        await ctx.send(f"❌ Invalid module. Options: `boss`, `hackers`, `build`, `trading`, `aw3`", delete_after=10)
         return
     module = module.lower()
     channel_id = None
@@ -1005,7 +1005,7 @@ async def set_canal(ctx, module: str = None, channel: str = None):
 async def remove_canal(ctx, module: str = None):
     """!removecanal boss / hackers / build"""
     if not module or module.lower() not in VALID_MODULES:
-        await ctx.send(f"❌ Invalid module. Options: `boss`, `hackers`, `build`, `trading`, `timers`", delete_after=10)
+        await ctx.send(f"❌ Invalid module. Options: `boss`, `hackers`, `build`, `trading`, `aw3`", delete_after=10)
         await ctx.message.delete(delay=5)
         return
     module = module.lower()
@@ -2587,7 +2587,7 @@ def build_timers_embed():
 @bot.command(name="gauntletanchor")
 async def gauntlet_anchor(ctx, time_str: str = None):
     """!gauntletanchor 10:01 — anchors gauntlet timer (UTC)"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not time_str:
@@ -2609,7 +2609,7 @@ async def gauntlet_anchor(ctx, time_str: str = None):
 @bot.command(name="shopanchor")
 async def shop_anchor(ctx, time_str: str = None):
     """!shopanchor 10:20 — anchors shop restock timer (UTC)"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not time_str:
@@ -2631,7 +2631,7 @@ async def shop_anchor(ctx, time_str: str = None):
 @bot.command(name="pathanchor")
 async def path_anchor(ctx, time_str: str = None):
     """!pathanchor 17:20 — anchors path timer (UTC)"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not time_str:
@@ -2655,7 +2655,7 @@ async def path_anchor(ctx, time_str: str = None):
 @bot.command(name="gauntletstop")
 async def gauntlet_stop(ctx):
     """!gauntletstop — stops gauntlet timer"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     timers = load_timers()
@@ -2668,7 +2668,7 @@ async def gauntlet_stop(ctx):
 @bot.command(name="shopstop")
 async def shop_stop(ctx):
     """!shopstop — stops shop restock timer"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     timers = load_timers()
@@ -2681,7 +2681,7 @@ async def shop_stop(ctx):
 @bot.command(name="pathstop")
 async def path_stop(ctx):
     """!pathstop — stops path timer"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     timers = load_timers()
@@ -2694,7 +2694,7 @@ async def path_stop(ctx):
 @bot.command(name="timerstop")
 async def timer_stop_all(ctx, target: str = "all"):
     """!timerstop all — stops all timers"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     timers = load_timers()
@@ -2711,7 +2711,7 @@ async def timer_stop_all(ctx, target: str = "all"):
 @bot.command(name="gauntletping")
 async def gauntlet_ping(ctx, role: discord.Role = None):
     """!gauntletping @role — sets ping role for gauntlet"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not role:
@@ -2727,7 +2727,7 @@ async def gauntlet_ping(ctx, role: discord.Role = None):
 @bot.command(name="shoppping")
 async def shop_ping(ctx, role: discord.Role = None):
     """!shoppping @role — sets ping role for shop restock"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not role:
@@ -2743,7 +2743,7 @@ async def shop_ping(ctx, role: discord.Role = None):
 @bot.command(name="pathping")
 async def path_ping(ctx, role: discord.Role = None):
     """!pathping @role — sets ping role for path events"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not role:
@@ -2765,7 +2765,7 @@ alerted_timers = set()
 async def show_timers(ctx):
     """!showtimers — posts a new live timer embed and deletes the old one"""
     global timer_display_message
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     await ctx.message.delete(delay=2)
@@ -2792,7 +2792,7 @@ async def update_timers():
     global timer_display_message, alerted_timers
     import time as t
 
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or not timer_display_message:
         return
 
@@ -2843,7 +2843,7 @@ async def update_timers():
 @bot.command(name="resetpathanchor")
 async def reset_path_anchor(ctx, time_str: str = None):
     """!resetpathanchor 23:20 — resets path anchor to a new UTC time"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not time_str:
@@ -2868,7 +2868,7 @@ async def reset_path_anchor(ctx, time_str: str = None):
 @bot.command(name="resetgauntletanchor")
 async def reset_gauntlet_anchor(ctx, time_str: str = None):
     """!resetgauntletanchor 10:01 — resets gauntlet anchor to today"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not time_str:
@@ -2893,7 +2893,7 @@ async def reset_gauntlet_anchor(ctx, time_str: str = None):
 @bot.command(name="resetshopanchor")
 async def reset_shop_anchor(ctx, time_str: str = None):
     """!resetshopanchor 10:20 — resets shop anchor to today"""
-    timers_channel_id = get_channel_id("timers")
+    timers_channel_id = get_channel_id("aw3")
     if not timers_channel_id or ctx.channel.id != timers_channel_id:
         return
     if not time_str:
@@ -2914,5 +2914,148 @@ async def reset_shop_anchor(ctx, time_str: str = None):
     except:
         await ctx.send("❌ Invalid time format. Use `HH:MM`", delete_after=5)
         await ctx.message.delete(delay=5)
+
+# ── DROP CALCULATOR ───────────────────────────────────────────────────────────
+
+import math as _math
+
+def _drop_bar(value, max_val, width=20, fill="█", empty="░"):
+    filled = round((value / max_val) * width) if max_val > 0 else 0
+    filled = min(filled, width)
+    return fill * filled + empty * (width - filled)
+
+def _drop_tier(hours):
+    if hours <= 2:   return "OPTIMAL",     "★★★★★"
+    if hours <= 5:   return "GOOD",        "★★★★☆"
+    if hours <= 15:  return "ACCEPTABLE",  "★★★☆☆"
+    if hours <= 40:  return "SLOW",        "★★☆☆☆"
+    return           "INEFFICIENT",        "★☆☆☆☆"
+
+def _drop_calc(drop_base, luck_mult, boost_dur, ttk):
+    p = min((drop_base * luck_mult) / 100.0, 1.0)
+    kills_per_boost = max(1, int(boost_dur / ttk))
+    p_per_boost = 1 - (1 - p) ** kills_per_boost
+    if p_per_boost <= 0:
+        return None
+    boosts_50  = _math.ceil(_math.log(0.50) / _math.log(1 - p_per_boost))
+    boosts_90  = _math.ceil(_math.log(0.10) / _math.log(1 - p_per_boost))
+    boosts_99  = _math.ceil(_math.log(0.01) / _math.log(1 - p_per_boost))
+    avg_boosts = _math.ceil(1 / p_per_boost)
+    return {
+        "p_efectiva":      p * 100,
+        "kills_per_boost": kills_per_boost,
+        "p_per_boost":     p_per_boost * 100,
+        "avg_boosts":      avg_boosts,
+        "avg_kills":       avg_boosts * kills_per_boost,
+        "avg_hours":       (avg_boosts * boost_dur) / 60,
+        "boosts_50":       boosts_50,
+        "boosts_90":       boosts_90,
+        "boosts_99":       boosts_99,
+        "hours_50":        (boosts_50 * boost_dur) / 60,
+        "hours_90":        (boosts_90 * boost_dur) / 60,
+        "hours_99":        (boosts_99 * boost_dur) / 60,
+        "boost_dur":       boost_dur,
+    }
+
+@bot.command(name="dropcalc")
+async def drop_calc(ctx, drop_str: str = None, luck_str: str = None,
+                    boost_str: str = None, ttk_str: str = None):
+    """
+    !dropcalc 0.2% 3.161x 180min 4min
+    drop_base% luck_multiplierx boost_duration_min ttk_min
+    """
+    aw3_channel_id = get_channel_id("aw3")
+    if not aw3_channel_id or ctx.channel.id != aw3_channel_id:
+        return
+
+    if not all([drop_str, luck_str, boost_str, ttk_str]):
+        await ctx.send(
+            "❌ Usage: `!dropcalc 0.2% 3.161x 180min 4min`\n"
+            "Parameters: `drop%` `luckX` `boost_duration_min` `ttk_min`",
+            delete_after=10
+        )
+        await ctx.message.delete(delay=5)
+        return
+
+    try:
+        drop_base = float(drop_str.replace("%", ""))
+        luck_mult = float(luck_str.replace("x", "").replace("X", ""))
+        boost_dur = float(boost_str.replace("min", "").replace("m", ""))
+        ttk       = float(ttk_str.replace("min", "").replace("m", ""))
+    except:
+        await ctx.send("❌ Invalid format. Example: `!dropcalc 0.2% 3.161x 180min 4min`", delete_after=8)
+        await ctx.message.delete(delay=5)
+        return
+
+    r = _drop_calc(drop_base, luck_mult, boost_dur, ttk)
+    if not r:
+        await ctx.send("❌ Effective probability = 0. Check your parameters.", delete_after=8)
+        await ctx.message.delete(delay=5)
+        return
+
+    await ctx.message.delete(delay=2)
+
+    # ── EMBED: Summary ──
+    embed = discord.Embed(
+        title="📊 DROP CALCULATOR",
+        color=discord.Color.teal()
+    )
+
+    embed.add_field(
+        name="⚙️ Parameters",
+        value=(
+            f"Drop base: `{drop_base}%`\n"
+            f"Luck: `{luck_mult}x` → Effective: `{r['p_efectiva']:.4f}%`\n"
+            f"Boost: `{boost_dur:.0f} min` | TTK: `{ttk:.1f} min`\n"
+            f"Kills per boost: `{r['kills_per_boost']}`\n"
+            f"Chance per boost: `{r['p_per_boost']:.3f}%`"
+        ),
+        inline=False
+    )
+
+    conf_lines = []
+    max_h = max(r['hours_50'], r['hours_90'], r['hours_99'])
+    for label, boosts, hours in [
+        ("50%", r['boosts_50'], r['hours_50']),
+        ("90%", r['boosts_90'], r['hours_90']),
+        ("99%", r['boosts_99'], r['hours_99']),
+    ]:
+        t, stars = _drop_tier(hours)
+        conf_lines.append(f"`{label}` → `{boosts}` boosts | `{hours:.1f}h` {stars} {t}")
+
+    embed.add_field(
+        name="🎯 Cumulative Confidence",
+        value="\n".join(conf_lines),
+        inline=False
+    )
+
+    t, stars = _drop_tier(r['avg_hours'])
+    embed.add_field(
+        name="📈 Average Scenario",
+        value=(
+            f"Boosts: `{r['avg_boosts']}` | Kills: `{r['avg_kills']}`\n"
+            f"Time: `{r['avg_hours']:.1f}h` {stars} {t}"
+        ),
+        inline=False
+    )
+
+    embed.set_footer(text="See checkpoint table below ↓")
+    await ctx.send(embed=embed)
+
+    # ── MESSAGE 2: Checkpoint table as code block ──
+    checkpoints = [10, 25, 50, 100, 200, 500, 1000]
+    header = f"{'Boosts':>8}  {'Kills':>7}  {'Hours':>6}  {'Cum. Prob':>10}  Bar"
+    sep    = "─" * 55
+    rows   = [header, sep]
+    for b in checkpoints:
+        kills = b * r['kills_per_boost']
+        hours = (b * boost_dur) / 60
+        prob  = (1 - (1 - r['p_per_boost'] / 100) ** b) * 100
+        prob  = min(prob, 99.99)
+        bar   = _drop_bar(prob, 100, 20)
+        rows.append(f"{b:>8}  {kills:>7}  {hours:>5.1f}h  {prob:>9.2f}%  {bar}")
+
+    table = "\n".join(rows)
+    await ctx.send(f"```\n{table}\n```")
 
 bot.run(BOT_TOKEN)
